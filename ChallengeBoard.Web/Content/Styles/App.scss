@@ -1,0 +1,34 @@
+﻿/*@import "base/config";
+@import "base/colors";*/
+
+@import "base/normalize";
+@import "base/skeleton"; 
+
+@import "icons/variables.scss";
+@import "icons/icons.scss";
+@import "icons/core.scss";
+@import "icons/larger.scss";
+@import "icons/fixedwidth.scss";
+
+@import 'components/card.scss';
+@import 'components/leaderboard.scss';
+@import 'components/notifications.scss';
+@import 'components/form.scss';
+@import 'components/dialog.scss';
+@import 'components/button.scss';
+
+@import 'layout/common.scss';
+@import 'layout/header.scss';
+
+@import 'views/home.scss';
+
+/*@import "base/breakpoints";
+@import "base/common";
+@import "base/headings";
+@import "base/headings.responsive";
+@import "base/tables";
+@import "base/sprites";
+@import "base/grid";
+
+@import 'components/button/_button.scss';
+@import 'components/container/_container.scss';*/

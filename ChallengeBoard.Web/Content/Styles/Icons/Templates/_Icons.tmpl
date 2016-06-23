@@ -1,0 +1,24 @@
+﻿/*
+Available icons
+
+Lorem
+
+Markup:
+<% _.each(glyphs, function(glyph) { %>
+<div style="border-top:1px solid #eee;border-bottom:1px solid #eee;margin-bottom:10px;">
+<span class="icon icon-<%= glyph.name %> icon--fw icon--lg" aria-hidden="true"r></span> .icon-<%= glyph.name %>
+</div>
+<% }); %>
+
+
+Styleguide 3.3.
+*/
+
+
+<% _.each(glyphs, function(glyph) { %>$icon-<%= glyph.name %>: "\<%= glyph.codepoint.toString(16).toUpperCase() %>";
+<% }); %>
+<% _.each(glyphs, function(glyph) { %>
+.icon-<%= glyph.name %>:before {
+	content: "#{$icon-<%= glyph.name %>}";
+}<% }); %>
+

@@ -1,0 +1,607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A0C81FFE-D414-40F9-BED1-5A9434FD6B12}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChallengeBoard.Web</RootNamespace>
+    <AssemblyName>ChallengeBoard.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44303</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raven.Abstractions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <HintPath>..\packages\RavenDB.Client.3.0.3528\lib\net45\Raven.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <HintPath>..\packages\RavenDB.Client.3.0.3528\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RavenDB.AspNet.Identity, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RavenDB.AspNet.Identity.0.9.1\lib\net45\RavenDB.AspNet.Identity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi, Version=1.1.3.0, Culture=neutral, PublicKeyToken=55aa52d3c3c0d2b2, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.1.3\lib\net40\SendGrid.SmtpApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGridMail, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2ae73662c35d80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.5.0.0\lib\SendGridMail.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="Twilio.Api, Version=3.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.3.6.25\lib\3.5\Twilio.Api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BoardController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RavenSessionController.cs" />
+    <Compile Include="Controllers\SignInController.cs" />
+    <Compile Include="Extensions\ChallengeIsCompleteExtension.cs" />
+    <Compile Include="Extensions\ChallengeNumberOfCompletionsExtension.cs" />
+    <Compile Include="Extensions\ListToggleExtension.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Indexes\Feed_FeedViewModel.cs" />
+    <Compile Include="Indexes\User_TotalPoints.cs" />
+    <Compile Include="Models\Board.cs" />
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Feed.cs" />
+    <Compile Include="Shared\Attributes\ExportModelStateToTempData.cs" />
+    <Compile Include="Shared\Attributes\ImportModelStateFromTempData.cs" />
+    <Compile Include="Shared\Attributes\ModelStateDataTransfer.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="ViewModels\BoardViewModelBuilder.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\SignInViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Icons\uE001-plus.svg" />
+    <Content Include="Content\Icons\uE002-health.svg" />
+    <Content Include="Content\Icons\uE003-check.svg" />
+    <Content Include="Content\Icons\uE004-clock.svg" />
+    <Content Include="Content\Icons\uE005-bell.svg" />
+    <Content Include="Content\Icons\uE006-star.svg" />
+    <Content Include="Content\Icons\uE007-cross.svg" />
+    <Content Include="Content\Icons\uE008-cardio.svg" />
+    <Content Include="Content\Icons\uE009-training.svg" />
+    <Content Include="Content\Icons\uE00A-misc.svg" />
+    <Content Include="Content\Images\appicon.png" />
+    <Content Include="Content\Images\bg.jpg" />
+    <Content Include="Content\Images\favicon.png" />
+    <Content Include="Content\Scripts\Main.js" />
+    <Content Include="Content\Scripts\Modules\ChallengeCards.js" />
+    <Content Include="Content\Scripts\Modules\UserInfo.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\dist\masonry.pkgd.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\dist\masonry.pkgd.min.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\Gruntfile.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\masonry.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\desandro-matches-selector\matches-selector.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\desandro-matches-selector\tests.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\desandro-matches-selector\tests.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\doc-ready.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\examples\require-js.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\examples\require-js.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\index.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\node_modules\eventie\eventie.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\node_modules\eventie\test.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\utils.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\get-size.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\index.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\node_modules\desandro-get-style-property\get-style-property.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\test\iframe.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\test\iframe3.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\test\iframe4.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\test\index.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\test\tests.css" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\test\tests.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\examples\browserify\browserify.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\examples\browserify\main.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\examples\cells-by-row.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\examples\cells-by-row.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\examples\examples.css" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\examples\item-methods.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\examples\requirejs\main.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\examples\requirejs\requirejs.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\examples\toggler.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\item.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-get-style-property\get-style-property.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-matches-selector\matches-selector.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-matches-selector\tests.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-matches-selector\tests.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\doc-ready\doc-ready.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\doc-ready\examples\require-js.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\doc-ready\examples\require-js.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\doc-ready\index.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\eventie\eventie.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\eventie\test.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\docs\render.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\EventEmitter.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\EventEmitter.min.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\tests\index.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\tests\tests.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\outlayer.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\helpers.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\index.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\tests.css" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\add-items.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\basics.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\container-size.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\create.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\declarative.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\defaults.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\destroy.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\filter-find.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\get-measurements.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\hide-reveal.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\item-on-transition-end.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\jquery-plugin.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\layout.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\offset.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\options.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\origin.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\percent-position.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\prepend.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\remove.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\stamp.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\unit\transition-duration.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\basic.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\bottom-up.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\browserify\index.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\browserify\main.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\element-sizing.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\fit-width.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\jquery.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\require-js\index.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\require-js\main.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\right-to-left.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\sandbox.css" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\sandbox\stamps.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\helpers.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\index.html" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\tests.css" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\unit\basic-layout.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\unit\element-sizing.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\unit\empty.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\unit\fit-width.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\unit\gutter.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\unit\pixel-rounding.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\unit\stamp.js" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\unit\zero-column-width.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\dist\progressbar.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\dist\progressbar.min.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\docs\animate-call.png" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\docs\animate-init.png" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\docs\animation.gif" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\Gruntfile.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\karma.conf.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\local-dev\index.html" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\local-dev\main.css" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\local-dev\main.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\asset\helix.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\asset\img\forkme.png" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\asset\img\shifty-logo-600.png" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\dist\doc\index.html" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\dist\doc\src\shifty.bezier.js.html" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\dist\doc\src\shifty.core.js.html" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\dist\doc\src\shifty.interpolate.js.html" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\dist\doc\src\shifty.token.js.html" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\dist\shifty.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\dist\shifty.min.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\Gruntfile.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\index.html" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\src\shifty.bezier.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\src\shifty.const.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\src\shifty.core.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\src\shifty.formulas.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\src\shifty.interpolate.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\src\shifty.intro.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\src\shifty.outro.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\src\shifty.token.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\tests\index.html" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\tests\qunit\qunit.css" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\tests\qunit\qunit.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\tests\utils\require.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\saucelabs-browsers.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\scripts\release.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\src\circle.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\src\line.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\src\main.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\src\path.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\src\shape.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\src\square.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\src\utils.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\test\path-behaviour.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\test\shape-behaviour.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\test\test-all.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\test\test-utils.js" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\test\testem.html" />
+    <Content Include="Global.asax" />
+    <Content Include="packages.config" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\.jshintrc" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\.tm_properties" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\changelog.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\CONTRIBUTING.mdown" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\desandro-matches-selector\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\desandro-matches-selector\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\desandro-matches-selector\component.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\desandro-matches-selector\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\desandro-matches-selector\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\component.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\node_modules\eventie\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\node_modules\eventie\component.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\node_modules\eventie\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\node_modules\eventie\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\node_modules\doc-ready\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\fizzy-ui-utils\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\component.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\node_modules\desandro-get-style-property\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\node_modules\desandro-get-style-property\component.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\node_modules\desandro-get-style-property\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\node_modules\desandro-get-style-property\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\get-size\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\.jshintrc" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\docs\changelog.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\docs\item.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\docs\notes.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\docs\outlayer.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-get-style-property\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-get-style-property\component.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-get-style-property\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-get-style-property\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-matches-selector\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-matches-selector\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-matches-selector\component.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-matches-selector\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\desandro-matches-selector\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\doc-ready\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\doc-ready\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\doc-ready\component.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\doc-ready\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\doc-ready\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\eventie\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\eventie\component.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\eventie\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\eventie\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\.tern-port" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\bower.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\component.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\docs\api.dust" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\docs\api.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\docs\guide.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\tools\dist.sh" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\tools\doc.sh" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\tools\server-python2.sh" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\node_modules\wolfy87-eventemitter\tools\server.sh" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\README.md" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\node_modules\outlayer\test\.jshintrc" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\package.json" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\README.mdown" />
+    <Content Include="Content\Scripts\node_modules\masonry-layout\test\.jshintrc" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\.editorconfig" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\.travis.yml" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\bower.json" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\CONTRIBUTING.md" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\dist\progressbar.min.js.map" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\LICENSE" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\.codepainterrc" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\.jshintrc" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\.npmignore" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\bower.json" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\CONTRIBUTING.md" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\LICENSE-MIT" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\package.json" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\node_modules\shifty\README.md" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\package.json" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\README.md" />
+    <Content Include="Content\Scripts\node_modules\progressbar.js\testem.json" />
+    <Content Include="Content\Scripts\package.json" />
+    <Content Include="Content\Styles\App.scss" />
+    <Content Include="Content\Styles\Base\normalize.scss" />
+    <Content Include="Content\Styles\Base\skeleton.scss" />
+    <Content Include="Content\Styles\Components\Card.scss" />
+    <Content Include="Content\Styles\Components\Dialog.scss" />
+    <Content Include="Content\Styles\Components\Form.scss" />
+    <Content Include="Content\Styles\Components\Leaderboard.scss" />
+    <Content Include="Content\Styles\Components\Notifications.scss" />
+    <Content Include="Content\Styles\Icons\Templates\_Icons.tmpl" />
+    <Content Include="Content\Styles\Icons\_Animated.scss" />
+    <Content Include="Content\Styles\Icons\_Core.scss" />
+    <Content Include="Content\Styles\Icons\_FixedWidth.scss" />
+    <Content Include="Content\Styles\Icons\_Icons.scss" />
+    <Content Include="Content\Styles\Icons\_Larger.scss" />
+    <Content Include="Content\Styles\Icons\_Variables.scss" />
+    <Content Include="Content\Styles\Layout\Common.scss" />
+    <Content Include="Content\Styles\Layout\Header.scss" />
+    <Content Include="Content\Styles\Components\Button.scss" />
+    <Content Include="Content\Styles\Views\Home.scss" />
+    <None Include="Properties\PublishProfiles\MvcP.pubxml" />
+    <None Include="Properties\PublishProfiles\MvcPWy.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Board\Index.cshtml" />
+    <Content Include="Views\Board\Register.cshtml" />
+    <Content Include="Views\SignIn\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\Scripts\Vendor\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>19692</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44306/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

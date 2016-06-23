@@ -1,0 +1,24 @@
+﻿@model ChallengeBoard.Web.ViewModels.SignInViewModel
+    
+<div class="dialog">
+    <div class="dialog__inner">
+        <strong class="dialog__lead">Logga in till din bräda</strong>
+        <form class="dialog__form form" action="/signin/signin" method="POST">
+            <div class="form__item">
+                <label class="hidden">E-post</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form__item__textbox", autofocus = "autofocus" })
+                <span class="form__item__textbox-placeholder">E-post</span>
+            </div>
+            <div class="form__item">
+                <label class="hidden">Namn</label>
+                @Html.PasswordFor(m => m.Password, new { @class = "form__item__textbox" })
+                <span class="form__item__textbox-placeholder">Lösenord</span>
+            </div>
+            <div class="form__error">
+                @Html.ValidationMessageFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+            <button type="submit" class="form__submit form__submit--wide button">Logga in</button>
+        </form>
+    </div>
+</div>

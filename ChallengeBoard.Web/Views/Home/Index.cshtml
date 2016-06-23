@@ -1,0 +1,21 @@
+﻿@model ChallengeBoard.Web.ViewModels.HomeViewModel
+
+<a href="@Url.Action("index", "signin")" class="button button--outline button--inverted home__sign-in-button">Logga in</a>
+<div class="dialog">
+    <div class="dialog__inner">
+        <strong class="dialog__lead">Vilken webbadress vill du ha till din bräda?</strong>
+        <div class="dialog__form">
+            <form class="form" action="/home/new" method="POST">
+                <div class="form__item">
+                    <label class="hidden">Namn</label>
+                    @Html.TextBoxFor(m => m.BoardName, new {@class = "form__item__textbox welcome__textbox-name lowercase", autocomplete = "off", autofocus = "autofocus"})
+                    <span class="form__item__textbox-placeholder fixed">challenge.meridium.se/</span>
+                </div>
+                <div class="form__error">
+                    @Html.ValidationMessageFor(m => m.BoardName)
+                </div>
+                <button type="submit" class="form__submit form__submit--wide button">Gå vidare</button>
+            </form>
+        </div>
+    </div>
+</div>

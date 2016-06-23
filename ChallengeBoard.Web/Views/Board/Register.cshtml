@@ -1,0 +1,33 @@
+﻿@model ChallengeBoard.Web.ViewModels.RegisterViewModel
+<a href="@Url.Action("index", "signin")" class="button button--outline button--inverted home__sign-in-button">Logga in</a>
+<div class="dialog">
+    <div class="dialog__inner">
+        <strong class="dialog__lead">Ange dina uppgifter för att skapa brädan</strong>
+        <form class="dialog__form form" action="/board/register" method="POST">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.BoardName)
+            <div class="form__item">
+                @Html.TextBoxFor(m => m.UserName, new {@class = "form__item__textbox", autofocus = "autofocus", autocomplete = "off"})
+                <label class="form__item__textbox-placeholder"><span>Användarnamn</span></label>
+            </div>
+            <div class="form__item">
+                @Html.PasswordFor(m => m.Password, new { @class = "form__item__textbox", autocomplete = "off" })
+                <label class="form__item__textbox-placeholder"><span>Lösenord</span></label>
+            </div>
+            <div class="form__item">
+                @Html.TextBoxFor(m => m.Name, new {@class = "form__item__textbox", autocomplete = "off"})
+                <label class="form__item__textbox-placeholder"><span>För och efternamn</span></label>
+            </div>
+            <div class="form__item">
+                @Html.TextBoxFor(m => m.Email, new {@class = "form__item__textbox", autocomplete = "off" })
+                <label class="form__item__textbox-placeholder"><span>E-post</span></label>
+            </div>
+            <div class="form__error">
+                @*@Html.ValidationMessageFor(m => m.Name)
+                @Html.ValidationMessageFor(m => m.Password)*@
+            </div>
+            <button type="submit" class="form__submit form__submit--wide button">Lets do this</button>
+        </form>
+    </div>
+</div>

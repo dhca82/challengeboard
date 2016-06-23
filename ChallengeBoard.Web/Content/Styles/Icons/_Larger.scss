@@ -1,0 +1,29 @@
+﻿
+/*
+Icon sizes
+
+Use modifiers to make the icons larger.
+
+.icon--lg       - Makes the font 33% larger relative to the icon container.
+.icon--2x       - Makes the font 100% larger.
+.icon--3x       - Makes the font 150% larger.
+.icon--4x       - Makes the font 200% larger.
+.icon--5x       - Makes the font 250% larger.
+
+Markup:
+<span class="icon icon-phone {$modifiers}" aria-hidden="true"></span>
+
+Styleguide 3.1.
+*/
+
+
+/* makes the font 33% larger relative to the icon container */
+.#{$icon-css-prefix}--lg {
+  font-size: (4em / 3);
+  //line-height: (3em / 4);
+  vertical-align: -5%;
+}
+.#{$icon-css-prefix}--2x { font-size: 2em; }
+.#{$icon-css-prefix}--3x { font-size: 3em; }
+.#{$icon-css-prefix}--4x { font-size: 4em; }
+.#{$icon-css-prefix}--5x { font-size: 5em; }
