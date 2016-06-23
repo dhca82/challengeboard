@@ -6,8 +6,8 @@
         <form class="dialog__form form" action="/signin/signin" method="POST">
             <div class="form__item">
                 <label class="hidden">E-post</label>
-                @Html.TextBoxFor(m => m.Email, new { @class = "form__item__textbox", autofocus = "autofocus" })
-                <span class="form__item__textbox-placeholder">E-post</span>
+                @Html.TextBoxFor(m => m.UserNameOrEmail, new { @class = "form__item__textbox", autofocus = "autofocus" })
+                <span class="form__item__textbox-placeholder">Användarnamn eller e-post</span>
             </div>
             <div class="form__item">
                 <label class="hidden">Namn</label>
@@ -15,7 +15,7 @@
                 <span class="form__item__textbox-placeholder">Lösenord</span>
             </div>
             <div class="form__error">
-                @Html.ValidationMessageFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.UserNameOrEmail)
                 @Html.ValidationMessageFor(m => m.Password)
             </div>
             <button type="submit" class="form__submit form__submit--wide button">Logga in</button>

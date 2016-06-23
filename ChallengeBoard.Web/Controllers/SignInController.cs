@@ -14,15 +14,25 @@ namespace ChallengeBoard.Web.Controllers {
 
         [ExportModelStateToTempData]
         public ActionResult SignIn(SignInViewModel model) {
+            var success = model.UserNameOrEmail.Contains("@") ? 
+                SignInWithEmail(model.UserNameOrEmail, model.Password) : 
+                SignInWithUserName(model.UserNameOrEmail, model.Password);
 
-            var user = UserManager.FindByEmail(model.Email);
+            if (success) return RedirectToAction("Index", "Board", new { boardName = CurrentUser.DefaultBoard, userName = CurrentUser.UserName });
 
-            if (UserManager.CheckPassword(user, model.Password)) {
-                SignInManager.SignIn(user, false, false);
-                return RedirectToAction("Index", "Board", new { boardName = user.DefaultBoard, userName = user.UserName });
-            }
-            
+            ModelState.AddModelError("Password", "Felaktigt användarnamn eller lösenord");
             return RedirectToAction("Index");
+        }
+
+        private bool SignInWithUserName(string username, string password) {
+            return SignInManager.PasswordSignIn(username, password, false, false) == SignInStatus.Success;
+        }
+
+        private bool SignInWithEmail(string email, string password) {
+            var user = UserManager.FindByEmail(email);
+            if (!UserManager.CheckPassword(user, password)) return false;
+            SignInManager.SignIn(user, false, false);
+            return true;
         }
     }
 }
