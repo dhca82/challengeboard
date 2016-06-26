@@ -1,0 +1,13 @@
+﻿@model ChallengeBoard.Web.ViewModels.LeaderboardViewModel
+   
+<div class="leaderboard" id="leaderboard">
+    <table class="leaderboard__result">        
+        @for (var i = 0; i<Model.Users.Count; i++) {
+            <tr>
+                <td>@(i+1).</td>
+                <td>@Model.Users[i].Name</td>
+                <td>@Model.Users[i].TotalPoints</td>
+            </tr>
+        }
+    </table>
+</div>

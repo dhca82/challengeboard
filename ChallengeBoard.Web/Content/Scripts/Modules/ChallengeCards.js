@@ -68,14 +68,14 @@ class ChallengeCards {
     }
     updateChallengeOnServer(card) {        
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'board/togglechallenge');
+        xhr.open('POST', '/board/togglechallenge');
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = function () {
             if (xhr.status !== 200) {
                 //Something went wrong message.
                 // return to login form
                 var username = document.getElementById("user-hide").textContent;
-                window.location.href = "/authentication?name=" + username;
+                window.location.href = "/signin";
                 return;
             }             
         };

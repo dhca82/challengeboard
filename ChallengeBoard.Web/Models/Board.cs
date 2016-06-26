@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 
 namespace ChallengeBoard.Web.Models {
-    public class Board {
+
+
+    public class DenormalizedUser {
+        public string UserName { get; set; }
         public string Name { get; set; }
-        public List<Card> Challenges { get; set; } 
-        public List<string> Users { get; set; } 
+        public int TotalPoints { get; set; }
+        public List<string> CompletedChallenges { get; set; } 
     }
 }

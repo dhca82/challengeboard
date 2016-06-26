@@ -2,15 +2,88 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Policy;
 using System.Web.Mvc;
 using ChallengeBoard.Web.Extensions;
+using ChallengeBoard.Web.Indexes;
 using ChallengeBoard.Web.Models;
 using ChallengeBoard.Web.ViewModels;
 using ChallengeBoard.Web.Shared.Attributes;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Raven.Client;
+using Raven.Client.Indexes;
+using Raven.Client.Linq;
+
 
 namespace ChallengeBoard.Web.Controllers {
+
+
+
+
+
+    //public class Board_Name : AbstractIndexCreationTask<Board> {
+    //    public Board_Name() {
+    //        Map = boards =>
+    //            from board in boards
+    //            select new {
+    //                Name = board.Name,
+    //                Users = board.Users.SelectMany(x => x.UserName)
+    //            };
+    //    }
+    //}
+
+    public class BoardViewModel {        
+        public string Name { get; set; }
+        public string UserName { get; set; }
+        public int TotalPoints { get; set; }
+        public List<CardViewModel> Cards { get; set; }
+    }
+
+    public class CardViewModel {
+        public string Id { get; set; }
+        public string Text { get; set; }
+        public int Points { get; set; }
+        public bool Selected { get; set; }
+    }
+
+    public class Board {        
+        public Board() {
+            CompletedCards = new List<string>();
+        }
+        public string BoardLayoutId { get; set; }
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+        public string BoardName { get; set; }
+        public List<string> CompletedCards { get; set; }
+    }
+
+    public class BoardDefinition {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public List<Card> Cards { get; set; }
+    }
+
+    public class BoardViewModelTransformer : AbstractTransformerCreationTask<Board> {
+        public BoardViewModelTransformer() {
+            TransformResults = boards =>
+                from board in boards
+                //let user = LoadDocument<User>(board.UserId) 
+                let definition = LoadDocument<BoardDefinition>(board.BoardLayoutId)               
+                select new BoardViewModel {
+                    Name = definition.Name,
+                    UserName = board.UserName,
+                    Cards = definition.Cards.Select(x => new CardViewModel {
+                        Text = x.Text,
+                        Selected = board.CompletedCards.Contains(x.Id),
+                        Points = x.Points
+                    }).ToList()
+                };
+        }
+    }
+
+
     public class BoardController : RavenSessionController {
 
         [ImportModelStateFromTempData]
@@ -19,25 +92,42 @@ namespace ChallengeBoard.Web.Controllers {
             //var challenges = new List<Card> {new Card {Text = "Spring 10 km", Category = Category.Health}};
             //var newboard = new Board {
             //    Name = "meridium",
-            //    Challenges = challenges
+            //    Cards = challenges
             //};
             //RavenSession.Store(newboard);
 
-            var board = RavenSession.Query<Board>().FirstOrDefault(x => x.Name == boardName);
 
-            if (board == null) {
-                return View("Register", new RegisterViewModel() { BoardName = boardName }); //TODO
-            }
+            var viewmodel = RavenSession
+                .Query<Board>()
+                .TransformWith<BoardViewModelTransformer, BoardViewModel>()
+                .FirstOrDefault(x => x.UserName == userName && x.Name == boardName);
 
-            var user = GetUser(userName);
 
-            if (user.IsPublic == false && HttpContext.User.Identity.IsAuthenticated == false) {
-                return RedirectToAction("Index", "SignIn");
-            }
+            
+            
 
-            var model = BoardViewModelBuilder.Build(RavenSession, board, user);
-            return View("Index", model);
+            //.Customize(x => x.Include<User>(u => u.UserName))
 
+
+                //
+                //.ToList();
+
+
+            //var board = RavenSession.Query<Board>().FirstOrDefault(x => x.Name == boardName);
+
+            //if (board == null) {
+            //    return View("Register", new RegisterViewModel() { BoardName = boardName }); //TODO
+            //}
+
+            //var user = GetUser(userName);
+
+            //if (user.IsPublic == false && HttpContext.User.Identity.IsAuthenticated == false) {
+            //    return RedirectToAction("Index", "SignIn");
+            //}
+            
+            //var model = BoardViewModelBuilder.Build(RavenSession, board, user);
+            //return View("Index", model);
+            return new EmptyResult();
    
 
         }
