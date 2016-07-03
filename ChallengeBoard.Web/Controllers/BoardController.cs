@@ -13,77 +13,10 @@ using ChallengeBoard.Web.Shared.Attributes;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Raven.Client;
-using Raven.Client.Indexes;
 using Raven.Client.Linq;
 
 
 namespace ChallengeBoard.Web.Controllers {
-
-
-
-
-
-    //public class Board_Name : AbstractIndexCreationTask<Board> {
-    //    public Board_Name() {
-    //        Map = boards =>
-    //            from board in boards
-    //            select new {
-    //                Name = board.Name,
-    //                Users = board.Users.SelectMany(x => x.UserName)
-    //            };
-    //    }
-    //}
-
-    public class BoardViewModel {        
-        public string Name { get; set; }
-        public string UserName { get; set; }
-        public int TotalPoints { get; set; }
-        public List<CardViewModel> Cards { get; set; }
-    }
-
-    public class CardViewModel {
-        public string Id { get; set; }
-        public string Text { get; set; }
-        public int Points { get; set; }
-        public bool Selected { get; set; }
-    }
-
-    public class Board {        
-        public Board() {
-            CompletedCards = new List<string>();
-        }
-        public string BoardLayoutId { get; set; }
-        public string UserId { get; set; }
-        public string UserName { get; set; }
-        public string BoardName { get; set; }
-        public List<string> CompletedCards { get; set; }
-    }
-
-    public class BoardDefinition {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public List<Card> Cards { get; set; }
-    }
-
-    public class BoardViewModelTransformer : AbstractTransformerCreationTask<Board> {
-        public BoardViewModelTransformer() {
-            TransformResults = boards =>
-                from board in boards
-                //let user = LoadDocument<User>(board.UserId) 
-                let definition = LoadDocument<BoardDefinition>(board.BoardLayoutId)               
-                select new BoardViewModel {
-                    Name = definition.Name,
-                    UserName = board.UserName,
-                    Cards = definition.Cards.Select(x => new CardViewModel {
-                        Text = x.Text,
-                        Selected = board.CompletedCards.Contains(x.Id),
-                        Points = x.Points
-                    }).ToList()
-                };
-        }
-    }
-
-
     public class BoardController : RavenSessionController {
 
         [ImportModelStateFromTempData]
@@ -102,34 +35,17 @@ namespace ChallengeBoard.Web.Controllers {
                 .TransformWith<BoardViewModelTransformer, BoardViewModel>()
                 .FirstOrDefault(x => x.UserName == userName && x.Name == boardName);
 
+            if (viewmodel == null) {
+                return View("Register", new RegisterViewModel() { BoardName = boardName }); //TODO
+            }
 
+            viewmodel.IsAuthenticated = userName == HttpContext.User.Identity.Name && HttpContext.User.Identity.IsAuthenticated;
+
+            if (viewmodel.IsPublic == false && viewmodel.IsAuthenticated) {
+                return RedirectToAction("Index", "SignIn");
+            }
             
-            
-
-            //.Customize(x => x.Include<User>(u => u.UserName))
-
-
-                //
-                //.ToList();
-
-
-            //var board = RavenSession.Query<Board>().FirstOrDefault(x => x.Name == boardName);
-
-            //if (board == null) {
-            //    return View("Register", new RegisterViewModel() { BoardName = boardName }); //TODO
-            //}
-
-            //var user = GetUser(userName);
-
-            //if (user.IsPublic == false && HttpContext.User.Identity.IsAuthenticated == false) {
-            //    return RedirectToAction("Index", "SignIn");
-            //}
-            
-            //var model = BoardViewModelBuilder.Build(RavenSession, board, user);
-            //return View("Index", model);
-            return new EmptyResult();
-   
-
+            return View("Index", viewmodel);
         }
 
         //[ImportModelStateFromTempData]
@@ -215,15 +131,16 @@ namespace ChallengeBoard.Web.Controllers {
 
 
             var board = new Board {
-                Name = model.BoardName,
-                Users = new List<string> { model.UserName }
+                BoardName = model.BoardName,
+                UserName = model.UserName,
+                UserId = user.Id
             };
             RavenSession.Store(board);
 
             RavenSession.SaveChanges();
             SignInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
 
-            return RedirectToAction("Index", "Board", new { boardName = board.Name, userName = user.UserName });
+            return RedirectToAction("Index", "Board", new { boardName = board.BoardName, userName = user.UserName });
         }
     }
 }
