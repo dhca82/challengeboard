@@ -12,7 +12,7 @@ class ChallengeCards {
                     e.preventDefault();
 
                     self.updateChallengeCard(this);
-                    self.updateChallengeOnServer(this);
+                    self.updateChallengeOnServer(this, 1);
 
                 });
                 var card = cards[i];
@@ -26,7 +26,7 @@ class ChallengeCards {
                     e.stopPropagation();
 
                     self.updateChallengeCardSubtract(card);
-                    self.updateChallengeCardSubtractOnServer(card);
+                    self.updateChallengeOnServer(card, -1);
                 });
             }());
         }
@@ -66,7 +66,7 @@ class ChallengeCards {
         var event = new CustomEvent("challengeCardSaved", { "detail": points });
         document.dispatchEvent(event);
     }
-    updateChallengeOnServer(card) {        
+    updateChallengeOnServer(card, count) {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/board/togglechallenge');
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -80,27 +80,11 @@ class ChallengeCards {
             }             
         };
         xhr.send(JSON.stringify({ 
-            id: card.getAttribute('data-id'),
+            id: card.dataset.id,
             currentUser: this.user,
-            single: card.classList.contains("card--single")
-        }));
-    }
-    updateChallengeCardSubtractOnServer(card) {        
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'Home/ToggleChallengeSubtract');
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onload = function () {
-            if (xhr.status !== 200) {
-                //Something went wrong message.
-                // return to login form
-                var username = document.getElementById("user-hide").textContent;
-                window.location.href = "/Authentication?name=" + username;
-                return;
-            }            
-        };
-        xhr.send(JSON.stringify({
-            id: card.getAttribute('data-id'),
-            currentUser: this.user
+            boardName: document.getElementById("Cards").dataset.board,
+            single: card.classList.contains("card--single"),
+            count: count
         }));
     }
 }

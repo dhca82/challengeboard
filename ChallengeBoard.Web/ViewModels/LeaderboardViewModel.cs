@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
-using ChallengeBoard.Web.Controllers;
 
 namespace ChallengeBoard.Web.ViewModels {
     public class LeaderboardViewModel {
-        public List<UserWithTotalPoints> Users { get; set; }
+        public class Item {
+            public string DisplayName { get; set; }
+            public int Points { get; set; }
+        }
+        public List<Item> Items { get; set; }
     }
 }

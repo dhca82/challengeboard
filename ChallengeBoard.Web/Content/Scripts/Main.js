@@ -2,29 +2,25 @@ import ChallengeCards from "./Modules/ChallengeCards";
 import UserInfo from "./Modules/UserInfo";
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    
-    setTimeout(function() {                
+
+    setTimeout(function() {
         document.getElementById("wrap").classList.add('wrap--init');
     }, 400);
 
 
-
-    
     var placeholders = $('.form__item__textbox');
-   
+
     placeholders.keypress(function() {
         $(this).addClass("form__item__textbox--hasvalue");
     });
     placeholders.keyup(function() {
-        if($(this).val().length == 0) {
+        if ($(this).val().length == 0) {
             $(this).removeClass("form__item__textbox--hasvalue")
         }
-        if($(this).hasClass('lowercase')) {
+        if ($(this).hasClass('lowercase')) {
             $(this).val($(this).val().toLowerCase());
-        }        
+        }
     });
-
-
 
 
     var username = document.getElementById("user-hide");
@@ -52,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         } else {
             this.classList.remove('header__actions__icon--expanded');
             container.classList.remove("notifications--init");
-            setTimeout(function() {                
+            setTimeout(function() {
                 container.classList.add('hidden');
             }, 300);
         }
@@ -62,17 +58,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById("leaderboard-toggle").addEventListener("click", function(e) {
         e.preventDefault();
 
-        
 
-        if (document.getElementsByClassName("leaderboard").length > 0) {            
+        if (document.getElementsByClassName("leaderboard").length > 0) {
             this.classList.remove('header__actions__icon--expanded');
             var leaderboard = document.getElementById("leaderboard");
             leaderboard.classList.remove("leaderboard--init");
-            setTimeout(function() {                                
+            setTimeout(function() {
                 leaderboard.parentElement.removeChild(leaderboard);
             }, 300);
-        }
-        else { 
+        } else {
             this.classList.add('header__actions__icon--expanded');
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -83,8 +77,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     }, 50);
                 }
             }
-            xhr.open('POST', 'leaderboard', true);
-            xhr.send(null);
+            xhr.open('POST', '/leaderboard/index', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                id: document.getElementById("Cards").dataset.boardid
+            }));
         }
     });
 });

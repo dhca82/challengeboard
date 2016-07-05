@@ -1,26 +1,23 @@
 using System.Linq;
+using ChallengeBoard.Web.Controllers;
 using Raven.Client.Indexes;
 
-namespace ChallengeBoard.Web.Controllers {
+namespace ChallengeBoard.Web.ViewModels {
     public class BoardViewModelTransformer : AbstractTransformerCreationTask<Board> {
         public BoardViewModelTransformer() {
             TransformResults = boards =>
                 from board in boards
-                let definition = LoadDocument<BoardDefinition>(board.BoardLayoutId) 
-                let completedCards = definition.Cards.Where(x => board.CompletedCards.Contains(x.Id))
+                let definition = LoadDocument<BoardDefinition>(board.BoardDefinitionId) 
+                let completedCards = definition.Cards.Where(x => board.BoardActivityList.Any(a => a.CardId == x.Id))
                 select new BoardViewModel {
-                    Name = definition.Name,
+                    Board = board,
                     UserName = board.UserName,
-                    TotalPoints = completedCards.Sum(x => x.Points),
-                    IsPublic = board.IsPublic,
-                    Cards = definition.Cards.Select(x => new CardViewModel {
-                        Id = x.Id,
-                        Text = x.Text,
-                        Points = x.Points,                        
-                        Category = x.Category,
-                        Hide = x.Hide,
-                        Single = x.Single,
-                        Selected = completedCards.Contains(x)
+                    BoardName = board.BoardName,
+                    TotalPoints = completedCards.Sum(card => card.Points * board.BoardActivityList.Count(x => x.CardId == card.Id)),
+                    Cards = definition.Cards.Where(card => card.Hide == false).Select(card => new CardViewModel {
+                        Card = card,
+                        Selected = completedCards.Contains(card),
+                        NumberOfCompletions = board.BoardActivityList.Count(x => x.CardId == card.Id)
                     }).ToList()
                 };
         }

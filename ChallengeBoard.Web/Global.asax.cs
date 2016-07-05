@@ -4,8 +4,10 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
-using ChallengeBoard.Web.Indexes;
+using ChallengeBoard.Web.Controllers;
+
 using ChallengeBoard.Web.Models;
+using ChallengeBoard.Web.ViewModels;
 using MvcPWy;
 using Raven.Client;
 using Raven.Client.Document;
@@ -40,8 +42,9 @@ namespace ChallengeBoard.Web {
 
             //IndexCreation.CreateIndexes(typeof(User_TotalPoints).Assembly, Store);
             IndexCreation.CreateIndexes(typeof(BoardViewModelTransformer).Assembly, Store);
-            IndexCreation.CreateIndexes(typeof(Board_Name).Assembly, Store);
-            IndexCreation.CreateIndexes(typeof(Feed_FeedViewModel).Assembly, Store);
+            IndexCreation.CreateIndexes(typeof(LeaderboardViewModelTransformer).Assembly, Store);            
+            //IndexCreation.CreateIndexes(typeof(Board_Name).Assembly, Store);
+            //IndexCreation.CreateIndexes(typeof(Feed_FeedViewModel).Assembly, Store);
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿@using ChallengeBoard.Web.Extensions
-@model ChallengeBoard.Web.Controllers.BoardViewModel
+﻿@model ChallengeBoard.Web.Controllers.BoardViewModel
 
 <header class="header">
     <div class="header__user">
-        @Model.CurrentUser.UserName
+        @Model.Board.UserName
         @if (Model.IsAuthenticated) {
             <span class="header__user__signedin"></span>
         }
@@ -19,37 +18,37 @@
         </button>      
     </div>    
 </header>
-<div class="cards" id="Cards">        
-    @foreach (var challenge in Model.Challenges) {
-        <div class="item card@(challenge.IsComplete(Model.CurrentUser) ? " card--complete" : string.Empty)@(challenge.Single ? " card--single" : string.Empty)" role="button" data-id="@challenge.Id" data-points="@challenge.Points">
+<div class="cards" id="Cards" data-board="@Model.Board.BoardName" data-boardid="@Model.Board.Id">        
+    @foreach (var card in Model.Cards) {
+        <div class="item card@(card.Selected ? " card--complete" : string.Empty)@(card.Card.Single ? " card--single" : string.Empty)" role="button" data-id="@card.Card.Id" data-points="@card.Card.Points">
             <div class="card-background"></div>
             <div class="card-body">
                 <div class="card-icon">
                     <div class="card-icon-inner">
-                        <span class="icon icon-@challenge.Category.ToString().ToLower()" aria-hidden="true"></span>
+                        <span class="icon icon-@card.Card.Category.ToString().ToLower()" aria-hidden="true"></span>
                         <span class="icon icon-check" aria-hidden="true"></span>                        
                     </div>
                     <span class="card-icon-ring"></span>
                 </div>
-                <strong class="card-heading">@challenge.Text</strong>
-                @if (!challenge.Single) {
-                    <strong class="card-count"><span class="card-count--subtr">-</span> <span class="card-count--number">@challenge.NumberOfCompletions(Model.CurrentUser)</span> <span class="card-count--add">+</span></strong>
+                <strong class="card-heading">@card.Card.Text</strong>
+                @if (!card.Card.Single) {
+                    <strong class="card-count"><span class="card-count--subtr">-</span> <span class="card-count--number">@card.NumberOfCompletions</span> <span class="card-count--add">+</span></strong>
                 }
-                <footer class="card-meta">@challenge.Points poäng</footer>
+                <footer class="card-meta">@card.Card.Points poäng</footer>
             </div>
         </div>
     }
 </div>
 <div class="notifications hidden" id="history-feed">
     <ul>
-        @if (Model.History.Any()) {
-            foreach (var feed in Model.History) {
+        @if (Model.Board.BoardActivityList.Any()) {
+            foreach (var activity in Model.Board.BoardActivityList) {
                 <li>
-                    <strong class="notifications__time">@feed.TimeStamp</strong>
-                    <p class="notifications__text">@feed.Challenge</p>
+                    <strong class="notifications__time">@activity.TimeStamp</strong>
+                    <p class="notifications__text">@activity.Name</p>
                 </li>
             }
         }
     </ul>
 </div>
-<div id="user-hide">@Model.CurrentUser.UserName</div>
+<div id="user-hide">@Model.Board.UserName</div>

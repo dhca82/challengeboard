@@ -1,26 +1,24 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using ChallengeBoard.Web.Indexes;
-using ChallengeBoard.Web.Models;
 using ChallengeBoard.Web.ViewModels;
-using Raven.Client;
+using Raven.Client.Linq;
 
 namespace ChallengeBoard.Web.Controllers {
     public class LeaderboardController : RavenSessionController {
         [HttpPost]
-        public ActionResult Index() {          
+        public ActionResult Index(string id) {
+            var items = RavenSession
+                .Query<Board>()
+                .Where(x => x.Id == id && x.IsPublic)
+                .TransformWith<LeaderboardViewModelTransformer, LeaderboardViewModel.Item>()
+                .OrderByDescending(x => x.Points)
+                .Take(10)
+                .ToList();
+            
             var model = new LeaderboardViewModel {
-                //Users = RavenSession.Query<User, User_TotalPoints>()
-                //    .ProjectFromIndexFieldsInto<UserWithTotalPoints>()                    
-                //    .OrderByDescending(x => x.TotalPoints)
-                //    .Take(10)
-                //    .ToList()
+               Items = items
             };
             return PartialView(model);
-        }     
-    }
-
-    public class UserWithTotalPoints : User {
-        public int TotalPoints { get; set; }
+        }
     }
 }
