@@ -1,6 +1,4 @@
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Web.Mvc.Html;
 using ChallengeBoard.Web.Controllers;
 using ChallengeBoard.Web.Models;
 using Raven.Client.Indexes;

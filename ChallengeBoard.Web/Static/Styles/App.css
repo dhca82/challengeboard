@@ -1234,6 +1234,9 @@ Styleguide 3.1.
   .form__item__textbox.input-validation-error {
     border-color: #ff6666; }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset; }
+
 .form__item__textbox--hasvalue + .form__item__textbox-placeholder:not(.fixed) {
   transform: translateY(-27px);
   color: #00d2a9; }
@@ -1248,7 +1251,7 @@ Styleguide 3.1.
   position: absolute;
   top: 16px;
   left: 0;
-  z-index: 1;
+  z-index: 9999;
   font-size: 18px;
   font-weight: 400; }
   .form__item__textbox-placeholder span {
@@ -1289,6 +1292,9 @@ Styleguide 3.1.
   .wrap--init .dialog {
     transform: translateY(0); }
 
+.dialog--smaller .dialog__inner {
+  height: 530px; }
+
 .dialog__inner {
   background: #fff;
   width: 495px;
@@ -1313,6 +1319,8 @@ Styleguide 3.1.
   left: 60px;
   right: 60px;
   margin: 0; }
+  .dialog__form form {
+    margin-bottom: 0; }
 
 .button {
   background: #00d2a9;

@@ -9,7 +9,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
     var placeholders = $('.form__item__textbox');
-
+    $('.form__item__textbox').each(function() {
+        if ($(this).val().length > 0) {
+            $(this).addClass("form__item__textbox--hasvalue");
+        }
+    });
     placeholders.keypress(function() {
         $(this).addClass("form__item__textbox--hasvalue");
     });

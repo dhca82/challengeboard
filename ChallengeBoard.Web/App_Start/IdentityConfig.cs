@@ -1,34 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
+using System.Diagnostics;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
+using ChallengeBoard.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using SendGrid;
-using System.Net;
-using System.Configuration;
-using System.Diagnostics;
-using ChallengeBoard.Web.Models;
-using Twilio;
-using RavenDB.AspNet.Identity;
 using Raven.Client;
+using RavenDB.AspNet.Identity;
+using SendGrid;
+using Twilio;
 
-namespace MvcPWy
-{
-    public class EmailService : IIdentityMessageService
-    {
-        public async Task SendAsync(IdentityMessage message)
-        {
+namespace ChallengeBoard.Web {
+    public class EmailService : IIdentityMessageService{
+        public async Task SendAsync(IdentityMessage message) {
             await configSendGridasync(message);
         }
 
         // Use NuGet to install SendGrid (Basic C# client lib) 
-        private async Task configSendGridasync(IdentityMessage message)
-        {
+        private async Task configSendGridasync(IdentityMessage message) {
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
             myMessage.From = new System.Net.Mail.MailAddress(
@@ -43,7 +36,7 @@ namespace MvcPWy
                        );
 
             // Create a Web transport for sending email.
-            var transportWeb = new Web(credentials);
+            var transportWeb = new SendGrid.Web(credentials);
 
             try
             {

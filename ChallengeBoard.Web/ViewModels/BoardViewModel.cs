@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Security.Permissions;
+using ChallengeBoard.Web.Controllers;
 
-namespace ChallengeBoard.Web.Controllers {
+namespace ChallengeBoard.Web.ViewModels {
     public class BoardViewModel {   
         public string UserName { get; set; }
         public string BoardName { get; set; }

@@ -1,19 +1,15 @@
 ﻿using System;
+using ChallengeBoard.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using System.Configuration;
-using ChallengeBoard.Web.Models;
 using Raven.Client;
 using Raven.Client.Document;
 
-namespace MvcPWy
-{
-public partial class Startup
-{
+namespace ChallengeBoard.Web {
+public partial class Startup {
     // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
     public void ConfigureAuth(IAppBuilder app)
     {

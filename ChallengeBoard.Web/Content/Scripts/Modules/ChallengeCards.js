@@ -68,7 +68,7 @@ class ChallengeCards {
     }
     updateChallengeOnServer(card, count) {
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/board/togglechallenge');
+        xhr.open('POST', '/card/togglechallenge');
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = function () {
             if (xhr.status !== 200) {

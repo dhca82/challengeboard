@@ -1,8 +1,9 @@
-﻿using Microsoft.Owin;
+﻿using ChallengeBoard.Web;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(MvcPWy.Startup))]
-namespace MvcPWy
+[assembly: OwinStartup(typeof(Startup))]
+namespace ChallengeBoard.Web
 {
     public partial class Startup
     {

@@ -29,6 +29,9 @@
         border-color:#ff6666;
     }
 }
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
 .form__item__textbox--hasvalue + .form__item__textbox-placeholder:not(.fixed) {
     transform:translateY(-27px);
     color:#00d2a9;
@@ -47,9 +50,9 @@
     position:absolute;
     top:16px;
     left:0;
-    z-index:1;
+    z-index:9999;
     font-size:18px;
-    font-weight:400;
+    font-weight:400;    
     span {
         display:block;
         transform:scale(1);
